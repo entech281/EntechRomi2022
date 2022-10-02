@@ -8,7 +8,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class ArcadeDriveCommand extends EntechCommandBase {
-    private final DriveSubsystem m_drivetrain;
+    private final DriveSubsystem m_drive;
     private final Joystick m_stick;
 
     /**
@@ -18,9 +18,9 @@ public class ArcadeDriveCommand extends EntechCommandBase {
      * @param drivetrain The drivetrain subsystem on which this command will run
      * @param stick Joystick object
      */
-    public ArcadeDriveCommand(DriveSubsystem drivetrain, Joystick stick) {
-        super(drivetrain);
-        m_drivetrain = drivetrain;
+    public ArcadeDriveCommand(DriveSubsystem drive, Joystick stick) {
+        super(drive);
+        m_drive = drive;
         m_stick = stick;
     }
 
@@ -31,7 +31,7 @@ public class ArcadeDriveCommand extends EntechCommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_drivetrain.arcadeDrive(m_stick);
+        m_drive.arcadeDrive(m_stick);
     }
 
     // Called once the command ends or is interrupted.
