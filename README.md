@@ -31,6 +31,7 @@ Preparation
  5. Issue the following command to clone the example code and create your open branch to work on:
  ```
  	git clone https://github.com/entech281/EntechRomi2022
+	cd EntechRomi2022
  	git branch _INITIALS-start01_
  ```
  6. Start VSCODE and use "File | Open Directory ..." and select the EntechRomi2022 directory
