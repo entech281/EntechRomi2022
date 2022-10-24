@@ -62,7 +62,7 @@ public class DriveSubsystem extends EntechSubsystem {
   }
 
   public void arcadeDrive(Joystick js) {
-    // Exercise 1: Use m_diffDrive and Joytick to make the robot move
+    m_diffDrive.arcadeDrive(js.getX(), js.getY());
   }
 
   public void arcadeDrive(double xSpeed, double zRotation) {
