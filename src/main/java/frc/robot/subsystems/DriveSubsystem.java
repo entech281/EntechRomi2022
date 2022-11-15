@@ -62,11 +62,11 @@ public class DriveSubsystem extends EntechSubsystem {
   }
 
   public void arcadeDrive(Joystick js) {
-    m_diffDrive.arcadeDrive(js.getX(), js.getY());
+    m_diffDrive.arcadeDrive(js.getY(), js.getX());
   }
 
   public void arcadeDrive(double xSpeed, double zRotation) {
-    m_diffDrive.arcadeDrive(xSpeed, zRotation);
+    m_diffDrive.arcadeDrive(zRotation, -xSpeed);
   }
 
   public void resetEncoders() {
