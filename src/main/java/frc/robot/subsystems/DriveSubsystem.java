@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import javax.naming.directory.DirContext;
+
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
@@ -40,6 +42,7 @@ public class DriveSubsystem extends EntechSubsystem {
   public void initialize() {
     // Create motor controllers and the differential drive
     m_leftMotor = new Spark(RobotConstants.PWM.LEFT_MOTOR);
+    m_leftMotor.setInverted(true);
     m_rightMotor = new Spark(RobotConstants.PWM.RIGHT_MOTOR);
     m_diffDrive = new DifferentialDrive(m_leftMotor, m_rightMotor);
 
@@ -63,6 +66,7 @@ public class DriveSubsystem extends EntechSubsystem {
 
   public void arcadeDrive(Joystick js) {
     // Exercise 1: Use m_diffDrive and Joytick to make the robot move
+    m_diffDrive.arcadeDrive(js.getX(), -js.getY());
   }
 
   public void arcadeDrive(double xSpeed, double zRotation) {
