@@ -10,6 +10,7 @@ public class TurnDegrees extends EntechCommandBase {
   private final DriveSubsystem m_drive;
   private final double m_degrees;
   private final double m_speed;
+  private final double startingDegrees;
 
   /**
    * Creates a new TurnDegrees. This command will turn your robot for a desired rotation (in
@@ -31,38 +32,30 @@ public class TurnDegrees extends EntechCommandBase {
   @Override
   public void initialize() {
     // Set motors to stop, read encoder values for starting point
-    m_drive.arcadeDrive(0, 0);
+    m_drive.tankDrive(0, 0);
     m_drive.resetEncoders();
+    startingDegrees = m_drive.getAngleX() + m_degrees;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drive.arcadeDrive(0, m_speed);
+    m_drive.tankDrive(m_speed, -m_speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_drive.arcadeDrive(0, 0);
+    m_drive.tankDrive(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    /* Need to convert distance travelled to degrees. The Standard
-       Romi Chassis found here, https://www.pololu.com/category/203/romi-chassis-kits,
-       has a wheel placement diameter (149 mm) - width of the wheel (8 mm) = 141 mm
-       or 5.551 inches. We then take into consideration the width of the tires.
-    */
-    double inchPerDegree = Math.PI * 5.551 / 360;
-    // Compare distance travelled from start to distance based on degree turn
-    return getAverageTurningDistance() >= (inchPerDegree * m_degrees);
+    return getTurning() >= m_degrees;
   }
 
-  private double getAverageTurningDistance() {
-    double leftDistance = Math.abs(m_drive.getLeftDistanceInch());
-    double rightDistance = Math.abs(m_drive.getRightDistanceInch());
-    return (leftDistance + rightDistance) / 2.0;
+  private double getTurning() {
+    return m_drive.getAngleX() - startingDegrees;
   }
 }

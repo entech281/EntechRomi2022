@@ -7,7 +7,7 @@ import frc.robot.subsystems.SubsystemManager;
 public class OperatorInterface {
 
     private Joystick driveStick;
-    private JoystickButtonManager drivestickButtonManager;
+    private JoystickButtonManager JoystickButtonManager;
     private SubsystemManager sm;
     private CommandFactory cf;
 
@@ -15,7 +15,7 @@ public class OperatorInterface {
         this.sm = subMan;
         this.cf = cmdFact;
         this.driveStick = new Joystick(RobotConstants.JOYSTICKS.DRIVER_JOYSTICK);
-        this.drivestickButtonManager = new JoystickButtonManager(driveStick);
+        this.JoystickButtonManager = new JoystickButtonManager(driveStick);
 
         // drivestickButtonManager.addButton(RobotConstants.DRIVER_STICK.TURN_LEFT90)
         //        .whenPressed(commandFactory.snapToYawCommand(-90.0))

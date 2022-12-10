@@ -65,8 +65,13 @@ public class DriveSubsystem extends EntechSubsystem {
     m_diffDrive.arcadeDrive(js.getY(), js.getX());
   }
 
+  // DO NOT USE
   public void arcadeDrive(double xSpeed, double zRotation) {
     m_diffDrive.arcadeDrive(zRotation, -xSpeed);
+  }
+
+  public void tankDrive(double leftSpeed, double rightSpeed) {
+    m_diffDrive.tankDrive(leftSpeed, rightSpeed);
   }
 
   public void resetEncoders() {
