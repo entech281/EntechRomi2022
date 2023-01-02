@@ -31,12 +31,14 @@ public class DriveDistance extends EntechCommandBase {
   public void initialize() {
     m_drive.arcadeDrive(0, 0);
     m_drive.resetEncoders();
+    m_drive.resetGyro();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drive.arcadeDrive(m_speed, 0);
+    double gyroAngle = m_drive.getGyroAngleZ();
+    m_drive.arcadeDrive(m_speed, gyroAngle/50);
   }
 
   // Called once the command ends or is interrupted.

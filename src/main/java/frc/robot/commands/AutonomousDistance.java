@@ -15,10 +15,14 @@ public class AutonomousDistance extends SequentialCommandGroup {
    * @param drivetrain The drivetrain subsystem on which this command will run
    */
   public AutonomousDistance(DriveSubsystem drivetrain) {
+    double sideY = 60;
+    double sideX = 12;
+    double sideH = Math.sqrt(sideY * sideY + sideX * sideX);
+    double angle = Math.atan(sideX / sideY);
     addCommands(
-        new DriveDistance(0.75, 120, drivetrain),
-        new TurnDegrees(0.75, 270, drivetrain),
-        new DriveDistance(0.75, 12, drivetrain)
+        //new DriveDistance(0.5, sideH, drivetrain),
+        new TurnDegrees(0.5, angle, drivetrain),
+        new DriveDistance(0.5, sideH, drivetrain)
     );
   }
 }
